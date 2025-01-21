@@ -1,0 +1,13 @@
+FROM debian:bullseye
+
+ENV
+
+RUN
+
+COPY
+
+ENTRYPOINT
+
+EXPOSE
+
+CMD
