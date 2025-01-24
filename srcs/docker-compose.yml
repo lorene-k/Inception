@@ -1,0 +1,19 @@
+# version: 'X'
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    # depends_on:
+    volumes:
+      # - <VOLUME PATH>
+    networks:
+      # - <NETWORK NAME>
+    ports:
+      # - <PORT>
+    # expose:
+      # - <?>
+    restart: always
+    # add "env_file: - .env" for other containers
+
+# add volumes & network for bonus
