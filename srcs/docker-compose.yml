@@ -1,19 +1,63 @@
-# version: 'X'
-
 services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx
-    # depends_on:
+    depends_on:
+      - wordpress
     volumes:
-      # - <VOLUME PATH>
+      - wordpress_data:/var/www/html
     networks:
-      # - <NETWORK NAME>
+      - inception_network
     ports:
-      # - <PORT>
-    # expose:
-      # - <?>
+      - "443:443"
     restart: always
-    # add "env_file: - .env" for other containers
 
-# add volumes & network for bonus
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    depends_on:
+      - mariadb
+    env_file:
+      - .env
+    environment:
+      - WP_DB_HOST=${MYSQL_HOSTNAME}
+      - WP_DB_USER=${MYSQL_USER}
+      - WP_DB_PASSWORD=${MYSQL_PASSWORD}
+      - WP_DB_NAME=${MYSQL_DATABASE}
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception_network
+    restart: always
+  
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    environment:
+      MYSQL_DATABASE: wordpress
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - inception_network
+    restart: always
+
+volumes:
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/lkhalifa/data/wordpress
+      o: bind
+
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/lkhalifa/data/mysql
+      o: bind
+
+networks:
+  inception_network:
+    driver: bridge
