@@ -16,6 +16,8 @@ cp $WP_DIR/wp-config-sample.php $WP_DIR/wp-config.php
 sed -i "s/database_name_here/$WP_DB_NAME/" $WP_DIR/wp-config.php
 sed -i "s/username_here/$WP_DB_USER/" $WP_DIR/wp-config.php
 sed -i "s/password_here/$WP_DB_PASSWORD/" $WP_DIR/wp-config.php
-sed -i "s/define('DB_HOST', '$WP_DB_HOST');/define('DB_HOST', '$WP_DB_HOST:3306');/" $WP_DIR/wp-config.php
 
-# Generate random salts ?
+SALTS=$(curl -s https://api.wordpress.org/secret-key/1.1/salt/)
+sed -i "/# Authentication Unique Keys and Salts/ r /dev/stdin" $WP_DIR/wp-config.php <<< "$SALTS"
+
+exec php-fpm7.4 -F

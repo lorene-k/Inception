@@ -6,12 +6,14 @@ RUN         apt-get update && apt-get install -y php7.4-fpm php7.4-mysqli \
 
 RUN         mkdir -p /run/php
 
-COPY        ./tools/wordpress_install.sh /usr/local/etc/
-            
-COPY        ./conf/www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY        ./conf/www.conf /usr/local/etc/php-fpm.d/
 
-RUN         bash /usr/local/etc/wordpress_install.sh
+COPY        ./conf/php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf
+
+COPY        ./tools/wordpress_install.sh /usr/local/bin/
+
+RUN         chmod +x /usr/local/bin/wordpress_install.sh
 
 EXPOSE      9000
 
-ENTRYPOINT  ["php-fpm7.4", "-F"]
+ENTRYPOINT  ["/usr/local/bin/wordpress_install.sh"]
