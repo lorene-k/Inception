@@ -19,11 +19,6 @@ services:
       - mariadb
     env_file:
       - .env
-    environment:
-      - WP_DB_HOST=${MYSQL_HOSTNAME}
-      - WP_DB_USER=${MYSQL_USER}
-      - WP_DB_PASSWORD=${MYSQL_PASSWORD}
-      - WP_DB_NAME=${MYSQL_DATABASE}
     volumes:
       - wordpress_data:/var/www/html
     ports:
