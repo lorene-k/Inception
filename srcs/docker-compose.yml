@@ -26,6 +26,8 @@ services:
       - WP_DB_NAME=${MYSQL_DATABASE}
     volumes:
       - wordpress_data:/var/www/html
+    ports:
+      - "9000"
     networks:
       - inception_network
     restart: always
@@ -34,11 +36,14 @@ services:
     image: mariadb:latest
     container_name: mariadb
     environment:
-      MYSQL_DATABASE: wordpress
+      MARIADB_USER: ${MYSQL_USER}
+      MARIADB_PASSWORD: ${MYSQL_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MYSQL_DATABASE}
     volumes:
       - mariadb_data:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "3306"
     networks:
       - inception_network
     restart: always
@@ -48,15 +53,15 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/lkhalifa/data/wordpress
       o: bind
+      device: /home/lkhalifa/data/wordpress
 
   mariadb_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/lkhalifa/data/mysql
       o: bind
+      device: /home/lkhalifa/data/mysql
 
 networks:
   inception_network:
