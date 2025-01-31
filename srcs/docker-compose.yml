@@ -21,8 +21,6 @@ services:
       - .env
     volumes:
       - wordpress_data:/var/www/html
-    ports:
-      - "9000"
     networks:
       - inception_network
     restart: always
@@ -37,8 +35,6 @@ services:
       MARIADB_DATABASE: ${MYSQL_DATABASE}
     volumes:
       - mariadb_data:/var/lib/mysql
-    ports:
-      - "3306"
     networks:
       - inception_network
     restart: always

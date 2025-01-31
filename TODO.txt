@@ -1,19 +1,9 @@
-1. WORDPRESS
-    - wordpress_install.sh
-    - config files
-    - edit nginx 
-    - launch w/docker-compose
-    - add WP env elements
-    - pull mariadb img from dockerhub to test wp
+1. Solve wp pb
+    - cant connect to lkhalifa.42.fr from vm browser
 
-2. IN VM :
-    - How to change your localhost by vbachele.42.fr
-    Go to the file /etc/hosts
-    Add the following line : "127.0.0.1 vbachele.42.fr"
-
-3. MARIADB
+2. MARIADB
     - create Dockerfile
     - check how to config
     - edit docker-compose
 
-- Create Makefile (launch docker compose w/ appropriate commands)
+3. Create Makefile (launch docker compose w/ appropriate commands)
