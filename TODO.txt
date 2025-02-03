@@ -1,9 +1,3 @@
-1. Solve wp pb
-    - cant connect to lkhalifa.42.fr from vm browser
-
-2. MARIADB
-    - create Dockerfile
-    - check how to config
-    - edit docker-compose
-
-3. Create Makefile (launch docker compose w/ appropriate commands)
+- Test Mariadb
+- Create Makefile (launch docker compose w/ appropriate commands)
+- Check subject & test everything
