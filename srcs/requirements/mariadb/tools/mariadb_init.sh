@@ -15,7 +15,8 @@ else
     mysql -e "GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%';"
     mysql -e "FLUSH PRIVILEGES;"
     
-    # service mysql stop # unnecessary if service not started
+    # --- Initialize WordPress SQL setup ---
+    mysql -u root -p${MYSQL_ROOT_PASSWORD} ${MYSQL_DATABASE} < /docker-entrypoint-initdb.d/setup.sql
 fi
 
 exec su -s /bin/bash mysql -c "mysqld"

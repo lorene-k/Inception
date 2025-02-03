@@ -9,7 +9,7 @@ FLUSH PRIVILEGES;
 
 -- Insert Admin User (Change the password hash)
 INSERT INTO wp_users (user_login, user_pass, user_registered, user_status) 
-VALUES ('${MYSQL_USER}', MD5('${MYSQL_PASSWORD}'), NOW(), 0);
+VALUES ('${MYSQL_ADM_USER}', MD5('${MYSQL_ADM_PASSWORD}'), NOW(), 0);
 
 -- Insert WordPress Options (Site URL, Home URL)
 INSERT INTO wp_options (option_name, option_value, autoload) 

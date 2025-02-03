@@ -7,12 +7,12 @@ RUN         mkdir -p /run/mysqld
 
 COPY        /conf/my.cnf /etc/mysql/my.cnf
 
-COPY        /conf/wordpress.sql /docker-entrypoint-initdb.d/wordpress.sql
+COPY        /conf/setup.sql /docker-entrypoint-initdb.d/setup.sql
 
-COPY        /tools/mariadb_config.sh /usr/local/bin/
+COPY        /tools/mariadb_init.sh /usr/local/bin/
 
-RUN         chmod +x /usr/local/bin/mariadb_config.sh
+RUN         chmod +x /usr/local/bin/mariadb_init.sh
 
 EXPOSE      3306
 
-ENTRYPOINT  ["/usr/local/bin/mariadb_config.sh"]
+ENTRYPOINT  ["/usr/local/bin/mariadb_init.sh"]
