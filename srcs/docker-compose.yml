@@ -28,8 +28,14 @@ services:
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
-    environment:
+    env_file:
       - .env
+    # image: mariadb:latest
+    # environment:
+    #   MARIADB_USER: ${MYSQL_USER}
+    #   MARIADB_PASSWORD: ${MYSQL_PASSWORD}
+    #   MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    #   MARIADB_DATABASE: ${MYSQL_DATABASE}
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:

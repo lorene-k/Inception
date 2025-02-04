@@ -1,4 +1,4 @@
--- Create Database
+-- Create DB
 CREATE DATABASE IF NOT EXISTS wordpress DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE wordpress;
 
@@ -7,11 +7,11 @@ CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';
 GRANT ALL PRIVILEGES ON wordpress.* TO '${MYSQL_USER}'@'%';
 FLUSH PRIVILEGES;
 
--- Insert Admin User (Change the password hash)
+-- Insert Admin User (Weak pw hash)
 INSERT INTO wp_users (user_login, user_pass, user_registered, user_status) 
-VALUES ('${MYSQL_ADM_USER}', MD5('${MYSQL_ADM_PASSWORD}'), NOW(), 0);
+VALUES ('${WP_ADM_USER}', MD5('${WP_ADM_PASSWORD}'), NOW(), 0);
 
--- Insert WordPress Options (Site URL, Home URL)
+-- Insert WP Options
 INSERT INTO wp_options (option_name, option_value, autoload) 
 VALUES ('siteurl', '${DOMAIN_NAME}', 'yes'),
        ('home', '${DOMAIN_NAME}', 'yes');
