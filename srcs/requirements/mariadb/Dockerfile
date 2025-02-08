@@ -7,8 +7,6 @@ RUN         mkdir -p /run/mysqld
 
 COPY        /conf/my.cnf /etc/mysql/my.cnf
 
-# COPY        /conf/setup.sql /docker-entrypoint-initdb.d/setup.sql
-
 COPY        /tools/mariadb_init.sh /usr/local/bin/
 
 RUN         chmod +x /usr/local/bin/mariadb_init.sh

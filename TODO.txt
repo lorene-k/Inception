@@ -1,3 +1,2 @@
-- Test Mariadb
 - Create Makefile (launch docker compose w/ appropriate commands)
-- Check subject & test everything
+- Check subject + checklists & test everything
