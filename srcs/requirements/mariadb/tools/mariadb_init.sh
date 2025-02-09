@@ -1,11 +1,13 @@
 #!/bin/sh
 
+# --- Set permissions ---
 chown -R mysql:mysql /var/lib/mysql
 chmod -R 755 /var/lib/mysql
 
 chown -R mysql:mysql /run/mysqld
 chmod -R 755 /run/mysqld
 
+# --- Setup database ---
 mysql_install_db > /dev/null
 
 tmp=$(mktemp)

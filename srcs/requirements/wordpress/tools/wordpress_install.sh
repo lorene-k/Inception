@@ -6,6 +6,7 @@ if [ -f wp-config.php ]
 then
 	echo "Wordpress already configured"
 else
+    sleep 2
     # --- Install wordpress ---
     curl -LO https://wordpress.org/latest.tar.gz
     tar -xvzf latest.tar.gz

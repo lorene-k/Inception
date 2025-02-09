@@ -16,11 +16,14 @@ start:
 stop:
 				@$(COMPOSE) $(FILEPATH) stop
 
-rmi:
-				docker image prune -a
+cleanimg:
+				@docker image prune -a
 
-fclean:			down rmi
+cleanvol:
+				@docker volume rm $(shell docker volume ls -q)
+
+fclean:			down cleanimg
 
 re:				fclean all
 
-.PHONY:			all up down start stop rmi fclean re
+.PHONY:			all up down start stop cleanimg cleanvol fclean re
