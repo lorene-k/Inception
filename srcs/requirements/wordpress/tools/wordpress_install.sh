@@ -15,7 +15,7 @@ else
     # --- Download and extract WordPress ---
     curl -LO https://wordpress.org/latest.tar.gz
     tar -xvzf latest.tar.gz
-    mv wordpress/* ./
+    # mv wordpress/* ./
     rm -rf wordpress latest.tar.gz
 
     # --- Setup wp-config.php ---
