@@ -1,4 +1,4 @@
-# Inception - 42 Project
+# Inception
 This project is part of the 42 cursus and aims to virtualize a small Docker-based infrastructure by creating custom Dockerfiles and using Docker Compose to orchestrate multiple services.
 
 ## Services
